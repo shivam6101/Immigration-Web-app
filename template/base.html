@@ -1,0 +1,85 @@
+{% load static from staticfiles %}
+
+<html>
+  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class='container'>
+        <a class="navbar-brand" href="{% url 'main' %}">EMMIGRATION</a>
+        
+        <form class="form-inline my-2 my-lg-0"></form>
+          {% if user.is_authenticated %}
+          <ul class="nav navbar-nav navbar-right">
+            <a class="btn btn-danger navbar-btn" href='javascript:{document.getElementById("logout").submit()}'>logout</a>  
+            <form id='logout' method='POST' action='{% url "logout" %}'>
+              {% csrf_token %}
+              <input type='hidden'/>
+            </form>
+          </ul>
+          {% else %}
+          <ul class="nav navbar-nav navbar-right">
+            <a class="btn btn-success my-2 my-sm-0" style='margin-right:16px' href='{% url "signup" %}'>SignUp</a>
+            <a class="btn btn-danger navbar-btn" style='margin-right:16px' href='{% url "login" %}'>Login</a>          
+          </ul>
+          
+          {% endif %}
+        
+      </div>
+  </nav>
+  
+</div>
+ 
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<br>
+<div class='container'>
+  
+{%block content %}
+{% endblock %}
+</div>
+<img src="{% static 'Tor_immigration.jpg' %}" style='margin-left:106px' width=70% />
+</br>
+</br>
+
+<style>
+  p {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left:8em;
+  margin-right: 1em;
+}
+p.ex1 {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left:3em;
+  margin-right: 1em;
+}
+</style>
+
+<body>
+<h2><p class='ex1'> These are the new rules for immigration to </br>Norway, from 2017</p></h2>
+<p>Here at LIngu’s Norskbloggen we support our readers in many</p> 
+<p>ways, and we want to make sure that you have a happy experience</p>
+<p>with your immigration process. So here we bring you the</p>
+<p>updated requirements for permanent residency</p>
+<p>(permanent oppholdstillatelse) and citizenship (statsborgerskap).</p>  
+
+</br>
+
+<h2><p class='ex1'>New conditions for immigration</p></h2>
+<p>You probably noticed that in 2016 immigration reform was a</p>
+<p>hot topic in politics. What we are seeing now is the</p>
+<p>implementation new rules that Stortinget passed in the</p>
+<p>summer and autumn of 2016.</p>
+<p>In short, they came up with some additional tasks to</p>
+<p>complete before you can receive PR or citizenship. Another</p>
+<p>new rule is that the language requirements must now be met</p>
+<p>also by older immigrants (up to 67 years of age).</p>
+</body>
+
+
+</html>

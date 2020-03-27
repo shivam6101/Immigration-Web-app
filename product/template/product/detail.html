@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>details of </h1>
+<div class="container">
+
+    <form method='GET'  encrypt='multipart/form-data'>
+        <h3>{{error}}</h3>
+        </br>
+        {% csrf_token %}
+        Name:<br />
+        <input type='text' name='name' value="{{prdct.name}}" />
+        <br/>
+        <br/>
+        Age: <br />
+        <input type='text' name="age" value="{{prdct.age}}" /><br /><br />
+        Qualification:<br />
+        <input type='text' name='qualification' value="{{prdct.qualification}}" />
+        <br /><br />
+        Country:<br />
+        <input type='text' name='country' value="{{prdct.country}}" />
+        <br /><br />
+        Phone_No:<br />
+        <input type='text' name='phone_no' value="{{prdct.phone_no}}" />
+        <br /><br />
+        
+        
+        <a style='margin-right:16px' class="btn btn-success my-2 my-sm-0" href="{% url 'modify' prdct.pk  %}">Modify</a>
+        <a style='margin-right:16px' class="btn btn-success my-2 my-sm-0" href='{% url "delete" prdct.pk %}'>Delete</a>
+            <br /><br />
+    </form>
+</div>
+
+{% endblock %}

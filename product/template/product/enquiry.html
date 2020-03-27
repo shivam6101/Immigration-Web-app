@@ -1,0 +1,125 @@
+
+{% if user.is_authenticated %}
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'main' %}">EMMIGRATION</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'enquiry' %}">Enquiry</a></li>
+      <li><a style='margin-right:320px' href="#"></a></li>
+      <li><a href="#"></a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href='{% url "registering" %}'><span class="glyphicon glyphicon-thumbs-up" >Register</span></a></li>
+        <li><a href='{% url "create" %}'><span class="glyphicon glyphicon-user" ></span> Add User</a></li>
+        <li><a href="{% url 'enquiry' %}" pk><span class="glyphicon glyphicon-trash" ></span> Delete</a></li>
+        </form>
+    </ul>
+    <form class="navbar-form navbar-left" method='POST' action="{% url 'search' %}">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="text" name="srh" class="form-control" placeholder="Search" name="search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</nav>
+
+<div class="container">
+        <head>
+                <style>
+                table {
+                  font-family: arial, sans-serif;
+                  border-collapse: collapse;
+                  width: 100%;
+                }
+                
+                td, th {
+                  border: 1px solid #dddddd;
+                  text-align: left;
+                  padding: 8px;
+                }
+                
+                tr:nth-child(even) {
+                  background-color: #dddddd;
+                }
+                </style>
+                </head>
+                <body>
+                
+                <table>
+                  <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Qualification</th>
+                    <th>Country</th>
+                    <th>Phone.No</th>
+                    <th>Select</th>
+                  </tr>
+                {% for prdcts in prdct.all %}
+                    <tr>
+                        
+                        <td><a href="{% url 'detail' prdcts.pk %}">{{prdcts.name}}</a></td>
+                        <td>{{prdcts.age}}</td>
+                        <td>{{prdcts.qualification}}</td>
+                        <td>{{prdcts.country}}</td>
+                        <td>{{prdcts.phone_no}}</td>
+                        <td>
+                          <label class="item">
+                            <input type="checkbox" name="checkbox" value="{{prdcts.pk}}" >
+                          </label> 
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                {% if messages %}
+                  <ul class='messages'>
+                  {% for k in messages %}
+                  <tr>
+                    <h2><li style="color:black">{{k}}</li></h2>
+                  </tr>
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+
+                {% if sr %}
+                    {% for k in sr %}
+                    
+                      <tr>
+                        <td><a href="{% url 'detail' k.pk %}">{{k.name}}</a></td>
+                        <td>{{k.age}}</td>
+                        <td>{{k.qualification}}</td>
+                        <td>{{k.country}}</td>
+                        <td>{{k.phone_no}}</td>
+                        <td>
+                          <label class="item">
+                            <input type="checkbox" name="checkbox" value="{{prdcts.pk}}" >
+                          </label> 
+                        </td>
+                      </tr>
+                   
+                    {% endfor %}
+                {% endif %}
+{% endif %}
+        
+</div>
+
+</body>
+</html> 
+    
